@@ -21,6 +21,9 @@ class QPercy:
     def __sigmoid_fn(input):
         return 1 / (1 + np.power(np.e, -1 * input))
 
+    def apply_sigmoid(self, data):
+        return QPercy.__sigmoid_fn(data)
+
     def create_circuit(self, weights):
         # qreg = QuantumRegister(len(inputs))
         # creg = ClassicalRegister(1)
@@ -75,7 +78,8 @@ class QPercy:
         ckt = QuantumCircuit(qreg)
 
         # normalized_inputs = [ QPercy.__sigmoid_fn(norm) * (np.pi / 2) for norm in inputs ]
-        normalized_inputs = [ QPercy.__sigmoid_fn(norm) * 2 * np.pi for norm in inputs ]
+        # normalized_inputs = [ QPercy.__sigmoid_fn(norm) * 2 * np.pi for norm in inputs ]
+        normalized_inputs = inputs
 
         if self.debug:
             print(f'Normalized inputs => {normalized_inputs}')
